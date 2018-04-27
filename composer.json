@@ -3,7 +3,7 @@
   "version": "v1.0.0",
   "description": "money helper",
   "license": "MIT",
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "authors": [
     {
       "name": "Alexey Dobrynin",
