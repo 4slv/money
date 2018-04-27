@@ -1,0 +1,14 @@
+{
+  "name": "4slovo/money",
+  "description": "money helper",
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Alexey Dobrynin",
+      "email": "a.dobrynin@4slovo.ru"
+    }
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "7.1.4"
+  }
+}
