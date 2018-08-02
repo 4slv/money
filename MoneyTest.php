@@ -229,4 +229,48 @@ class MoneyTest extends TestCase
             $this->assertTrue($actualMoneyPart->equal($expectedMoneyPart));
         }
     }
+
+    public function testSort()
+    {
+        $moneyList = [
+            Money::create(3),
+            Money::create(5),
+            Money::create(1),
+            Money::create(2)
+        ];
+        $expectedList = [
+            Money::create(1),
+            Money::create(2),
+            Money::create(3),
+            Money::create(5)
+        ];
+        $actualList = Money::sort($moneyList);
+        $this->assertEquals($expectedList, $actualList);
+    }
+
+    public function testMin()
+    {
+        $moneyList = [
+            Money::create(3),
+            Money::create(5),
+            Money::create(1),
+            Money::create(2)
+        ];
+        $expectedResult = Money::create(1);
+        $actualResult = Money::min($moneyList);
+        $this->assertEquals($expectedResult, $actualResult);
+    }
+
+    public function testMax()
+    {
+        $moneyList = [
+            Money::create(3),
+            Money::create(5),
+            Money::create(1),
+            Money::create(2)
+        ];
+        $expectedResult = Money::create(5);
+        $actualResult = Money::max($moneyList);
+        $this->assertEquals($expectedResult, $actualResult);
+    }
 }

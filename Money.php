@@ -29,6 +29,52 @@ class Money
     }
 
     /**
+     * @param Money $leftMoney деньги слева
+     * @param Money $rightMoney деньги справа
+     * @return int результ сравнения
+     */
+    private static function compare($leftMoney, $rightMoney)
+    {
+        if ($leftMoney->getAmount() == $rightMoney->getAmount()) {
+            return 0;
+        }
+        return $leftMoney->getAmount() < $rightMoney->getAmount() ? -1 : 1;
+    }
+
+    /**
+     * @param Money[] $moneyList список денег
+     * @return Money[] отсортированный список денег
+     */
+    public static function sort($moneyList)
+    {
+        usort(
+            $moneyList,
+            [self::class, 'compare']
+        );
+        return $moneyList;
+    }
+
+    /**
+     * @param Money[] $moneyList список денег
+     * @return Money минимальные деньги из списка
+     */
+    public static function min($moneyList)
+    {
+        $sortedMoneyList = self::sort($moneyList);
+        return array_shift($sortedMoneyList);
+    }
+
+    /**
+     * @param Money[] $moneyList список денег
+     * @return Money максимальные деньги из списка
+     */
+    public static function max($moneyList)
+    {
+        $sortedMoneyList = self::sort($moneyList);
+        return array_pop($sortedMoneyList);
+    }
+
+    /**
      * @return int сумма в минорных денежных единицах
      */
     public function getAmount()
