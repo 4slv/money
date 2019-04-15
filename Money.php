@@ -220,11 +220,13 @@ class Money
         $majorAmount = (int) ($this->getAmount() / self::getMajorCurrencyParts());
         $majorAmountPart = (int) ($majorAmount / $parts);
         $majorAmountRest = $majorAmount - $parts * $majorAmountPart;
+        $minorAmountRest = $this->getAmount() - $majorAmount * self::getMajorCurrencyParts();
         for ($part = 0; $part < $parts; $part++, $majorAmountRest--)
         {
             $additionalMajorAmount = $majorAmountRest > 0 ? 1 : 0;
+            $additionalMinorAmount = isset($additionalMinorAmount) ? 0 : $minorAmountRest;
             $minorAmountPart = ($majorAmountPart + $additionalMajorAmount) * self::getMajorCurrencyParts();
-            $moneyParts[] = Money::create($minorAmountPart);
+            $moneyParts[] = Money::create($minorAmountPart + $additionalMinorAmount);
         }
         return $moneyParts;
     }

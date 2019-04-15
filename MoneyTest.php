@@ -214,10 +214,10 @@ class MoneyTest extends TestCase
 
     public function testAllocate()
     {
-        $creditAmount = 35000*100;
+        $creditAmount = 35000*100 + 23;
         $creditParts = 3;
         $expectedMoneyParts = [
-            Money::create(11667*100),
+            Money::create(11667*100 + 23),
             Money::create(11667*100),
             Money::create(11666*100)
         ];
@@ -226,7 +226,7 @@ class MoneyTest extends TestCase
         foreach($expectedMoneyParts as $part => $moneyPart){
             $actualMoneyPart = $actualMoneyParts[$part];
             $expectedMoneyPart = $expectedMoneyParts[$part];
-            $this->assertTrue($actualMoneyPart->equal($expectedMoneyPart));
+            $this->assertEquals($actualMoneyPart, $expectedMoneyPart);
         }
     }
 
